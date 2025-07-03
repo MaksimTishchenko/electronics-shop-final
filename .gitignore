@@ -66,3 +66,7 @@ docker-compose.yml
 
 # Кэши
 /cache/
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
