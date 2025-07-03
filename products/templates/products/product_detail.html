@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+
+{% if product.image %}
+    <img src="{{ product.image.url }}" class="img-fluid rounded mb-3" style="max-width: 400px;" alt="{{ product.name }}">
+{% endif %}
+
+<p>{{ product.description }}</p>
+<p><strong>Цена:</strong> {{ product.price }} ₽</p>
+<p><strong>Добавлен:</strong> {{ product.created_at|date:"d.m.Y H:i" }}</p>
+
+<a href="{% url 'cart:cart_add' product.id %}" class="btn btn-success me-2">Добавить в корзину</a>
+<a href="{% url 'products:product-list' %}" class="btn btn-secondary">← Назад к каталогу</a>
+
+{% endblock %}

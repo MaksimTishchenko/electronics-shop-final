@@ -1,0 +1,27 @@
+[project]
+name = "electronics-shop"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "MaksimTishchenko",email = "tmaxim.1997@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=5.2.3,<6.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "dj-database-url (>=3.0.0,<4.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "pillow (>=11.3.0,<12.0.0)",
+    "stripe (>=12.3.0,<13.0.0)",
+    "djangorestframework (>=3.16.0,<4.0.0)",
+    "djangorestframework-simplejwt (>=5.5.0,<6.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "electronics_shop", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

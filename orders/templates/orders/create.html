@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Оформите заказ</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group mb-3">
+        <label for="address">Адрес доставки</label>
+        <textarea name="delivery_address" id="address" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Оплатить</button>
+</form>
+
+<a href="{% url 'cart:cart_detail' %}" class="btn btn-link mt-3">← Назад в корзину</a>
+
+{% endblock %}

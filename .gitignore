@@ -1,0 +1,91 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pot
+*.mo
+*.po
+MANIFEST
+
+# Django
+/media/
+/staticfiles/
+/.env*
+/.venv
+/venv
+/env
+ENV/
+
+# Poetry
+/pip-selfcheck.json
+/.cache/
+build/
+dist/
+*.egg-info/
+.sdist/
+.wheelhouse/
+htmlcov/
+.pytest_cache/
+.coverage
+htmlcov/
+*.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pot
+*.mo
+*.po
+MANIFEST
+
+# Logs and databases
+*.log
+*.sqlite3
+*.bak
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local development files
+*.db
+*.sqlite3
+*.bak
+
+# Coverage files
+htmlcov/
+.coverage
+*.coverage.*
+
+# Static and media for local dev
+/static/
+/media/
+
+# Docker
+Dockerfile
+docker-compose.yml

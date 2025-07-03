@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Каталог товаров{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{% if category %}{{ category.name }}{% else %}Все товары{% endif %}</h2>
+
+<!-- Форма поиска -->
+<form method="get" action="{% url 'products:product-list' %}" class="mb-4">
+    <input type="text" name="q" placeholder="Поиск товаров..." value="{{ query|default_if_none:'' }}" class="form-control d-inline-block w-auto me-2">
+    <button type="submit" class="btn btn-primary">🔍 Поиск</button>
+</form>
+
+<!-- Сортировка -->
+<div class="mb-4">
+    <label for="sort" class="form-label">Сортировать:</label>
+    <select id="sort" onchange="location.href=this.value" class="form-select w-auto d-inline-block me-2">
+        <option value="{% url 'products:product-list' %}?q={{ query }}" {% if sort_by == 'name' %}selected{% endif %}>
+            По названию
+        </option>
+        <option value="{% url 'products:product-list' %}?q={{ query }}&sort=price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>
+            По возрастанию цены
+        </option>
+        <option value="{% url 'products:product-list' %}?q={{ query }}&sort=price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>
+            По убыванию цены
+        </option>
+    </select>
+</div>
+
+<!-- Карточки товаров -->
+<div class="row g-4">
+    {% if products %}
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text text-muted">{{ product.description|truncatewords:15 }}</p>
+                        <h5 class="text-success">{{ product.price }} ₽</h5>
+                        <a href="{% url 'cart:cart_add' product.id %}" class="btn btn-success me-2">
+                            Добавить в корзину
+                        </a>
+                        <a href="{% url 'products:product-detail' pk=product.pk %}" class="btn btn-outline-primary">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">Товаров не найдено.</div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Пагинация -->
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if products.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1&q={{ query }}&sort={{ sort_by }}">&laquo; первая</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ products.previous_page_number }}&q={{ query }}&sort={{ sort_by }}">предыдущая</a>
+            </li>
+        {% endif %}
+
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Страница {{ products.number }} из {{ products.paginator.num_pages }}</a>
+        </li>
+
+        {% if products.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ products.next_page_number }}&q={{ query }}&sort={{ sort_by }}">следующая</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ products.paginator.num_pages }}&q={{ query }}&sort={{ sort_by }}">последняя &raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock %}
