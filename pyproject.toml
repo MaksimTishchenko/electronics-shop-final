@@ -1,11 +1,11 @@
 [project]
-name = "electronics-shop"
+name = "electronics-shop-final"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "MaksimTishchenko",email = "tmaxim.1997@gmail.com"}
+    {name = "MaksimTishchenko", email = "tmaxim.1997@gmail.com"}
 ]
-readme = "README.md"
+# readme = "README.md
 requires-python = ">=3.13"
 dependencies = [
     "django (>=5.2.3,<6.0.0)",
@@ -15,12 +15,19 @@ dependencies = [
     "pillow (>=11.3.0,<12.0.0)",
     "stripe (>=12.3.0,<13.0.0)",
     "djangorestframework (>=3.16.0,<4.0.0)",
-    "djangorestframework-simplejwt (>=5.5.0,<6.0.0)"
+    "djangorestframework-simplejwt (>=5.5.0,<6.0.0)",
+    "whitenoise (>=6.9.0,<7.0.0)",
+    "coverage (>=7.9.2,<8.0.0)"
 ]
 
 [tool.poetry]
-packages = [{include = "electronics_shop", from = "src"}]
+package-mode = false
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-django = "^4.2.0"
+coverage = "^7.5.0"
+pytest-cov = "^6.2.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

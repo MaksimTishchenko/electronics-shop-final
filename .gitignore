@@ -12,30 +12,31 @@ __pycache__
 MANIFEST
 
 # Django
-/media/
-/staticfiles/
+/media/*
+!/media/.gitkeep
+/staticfiles/*
+!/staticfiles/.gitkeep
 /.env*
+!.env.example
+/env/
+/venv/
 /.venv
-/venv
-/env
-ENV/
+/ENV/
 
 # Poetry
 /pip-selfcheck.json
 /.cache/
-build/
-dist/
+/build/
+/dist/
 *.egg-info/
 .sdist/
 .wheelhouse/
 htmlcov/
 .pytest_cache/
 .coverage
-htmlcov/
 *.coverage.*
 nosetests.xml
 coverage.xml
-*.cover
 
 # VSCode
 .vscode/
@@ -48,44 +49,20 @@ coverage.xml
 *.sublime-workspace
 
 # Docker
-__pycache__
-*.pyc
-*.pyo
-*.pyd
-*.db
-*.sqlite3
-*.log
-*.pot
-*.mo
-*.po
-MANIFEST
-
-# Logs and databases
-*.log
-*.sqlite3
-*.bak
-
-# Env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Local development files
-*.db
-*.sqlite3
-*.bak
-
-# Coverage files
-htmlcov/
-.coverage
-*.coverage.*
-
-# Static and media for local dev
-/static/
-/media/
-
-# Docker
 Dockerfile
 docker-compose.yml
+
+# DRF / API
+/swagger.yaml
+/schema.yml
+
+# Тесты
+/tests/__pycache__
+/tests/*.pyc
+/migrations/__pycache__
+/migrations/*.pyc
+/results/
+/reports/
+
+# Кэши
+/cache/
