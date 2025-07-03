@@ -21,11 +21,16 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
 
-      - name: Generate lock file
-        run: poetry lock
-
       - name: Install dependencies
         run: poetry install
 
+      - name: Set secret key
+        env:
+          DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
+        run: echo "Using secret key for CI"
+
       - name: Run tests
-        run: poetry run python manage.py test
+        env:
+          DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
+        run: |
+          poetry run python manage.py test
