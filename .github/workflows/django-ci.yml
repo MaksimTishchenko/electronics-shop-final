@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,13 +27,5 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Set secret key
-        env:
-          DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
-        run: echo "Using secret key for CI"
-
       - name: Run tests
-        env:
-          DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
-        run: |
-          poetry run python manage.py test
+        run: poetry run python manage.py test
