@@ -10,7 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DJANGO_SECRET_KEY: 'test-secret-key-for-ci'
+      DEBUG: "True"
+      DJANGO_SECRET_KEY: "test-secret-key"
+      CSRF_TRUSTED_ORIGINS: "http://localhost,http://127.0.0.1"
 
     steps:
       - name: Checkout code
@@ -25,7 +27,7 @@ jobs:
         run: pip install poetry
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Run tests
         run: poetry run python manage.py test
